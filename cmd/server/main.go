@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"path/filepath"
+	// "path/filepath"
 )
 
 func main() {
@@ -13,14 +13,14 @@ func main() {
 	})
 
 	// Set up the static directory
-	staticDir := filepath.Join("..", "..", "web", "static")
-	fmt.Println("Static directory:", staticDir) // Log the static directory path
+	// staticDir := filepath.Join("..", "..", "web", "static")
+	// fmt.Println("Static directory:", staticDir) // Log the static directory path
 
-	fs := http.FileServer(http.Dir(staticDir))
+	fs := http.FileServer(http.Dir("web/static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
 	// Listen for HTTP connections
-	if err := http.ListenAndServe(":42069", nil); err != nil {
+	if err := http.ListenAndServe(":8080", nil); err != nil {
 		fmt.Println("Error starting server:", err)
 	}
 }
