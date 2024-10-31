@@ -13,7 +13,7 @@ func main() {
 
 	// use absolute file paths, not relative nor Join
 	fs := http.FileServer(http.Dir("web/static"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
+	http.Handle("/static/", http.StripPrefix("/static", fs))
 
 	// Listen for HTTP connections
 	if err := http.ListenAndServe(":8080", nil); err != nil {
