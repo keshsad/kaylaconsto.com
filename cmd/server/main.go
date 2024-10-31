@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	// "path/filepath"
 )
 
 func main() {
@@ -12,10 +11,7 @@ func main() {
 		fmt.Fprintf(w, "Welcome to kaylaconsta.com. You're currently visiting: %s\n", r.URL.Path)
 	})
 
-	// Set up the static directory
-	// staticDir := filepath.Join("..", "..", "web", "static")
-	// fmt.Println("Static directory:", staticDir) // Log the static directory path
-
+	// use absolute file paths, not relative nor Join
 	fs := http.FileServer(http.Dir("web/static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
